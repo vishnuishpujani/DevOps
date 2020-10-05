@@ -1,0 +1,216 @@
+Objective:- Assignments will help trainees to understand the basics of unix command and how to explore and use it.
+
+DO NOT copy paste commands from internet, you can take help of the Unix in-built command manual.
+
+Be Honest to yourself!
+
+Important command and option to learn unix commands:-
+man Command
+Example:-
+man ls
+
+--help Option
+Example:-
+ls --help
+
+NOTE:- Always use "man" command before using any unix commands and read about it and its options and how to use it.
+
+Assignments:-
+
+List the contents of a directory and their attributes --
+ls
+
+Long list the content with file, directory ownership, permissions,sizes, etc…
+ls -l
+
+Display the size of the file in human readable format
+ls -h -l
+
+Show all files and folders including hidden one
+ls -a -l
+
+list directories recursively
+ls -R
+
+Sort the files by size with largest at the top
+ls -laS
+
+Sort the files by last time modified displaying the newest first. 
+ls -halt
+
+Diplay the location of a program/command, where it is installed. 
+which
+
+Which command is used to switch directory from one to another 
+cd {dir name)
+
+List of all environment variables and its values
+echo $PATH
+
+List all the environment variables set for the current shell environment : 
+printenv
+
+Did you notice something in the output of "env" command? 
+List of all environment variables and its values
+
+Which command is used to print the text or any variables value in the Console/Terminal?
+echo with $ symbol followed by variable name for variables
+
+Print the value of the env variable "PATH" on the console
+echo $PATH
+
+Is linux a case-sensitive operating system? Yes
+
+Is, "Ls" same as "ls"? 
+no,ls give more information like the permissions
+
+Display your currently logged in user
+whoami
+
+how do you change the currrently logged in user to another user? 
+su -<user>
+
+Which command is used to leave a shell environment that you are currently logged in to? 
+exit
+
+How do you reboot the system? 
+sudo reboot (only root user can do that)
+
+How do you shutdown the system? 
+sudo shutdown -r now 
+
+Display all the major running processes in the system
+ps -A
+
+Understand the output of command used in above question of displaying processes, explain the meaning of each column and what data it displays?
+
+Display the name of the system kernel
+uname -s
+
+display the kernel release number
+uname -r
+
+display teh machine type of the current kernel
+uname -m
+
+Display the name of the operating system that the kernel is running on
+uname -o
+
+Display all info that uname command can show.
+uname -a
+
+Display the name of directory that you are currently pointing to
+pwd
+
+change the current directory to another directory that you have in your system. 
+cd direcotyname
+
+Go up one directory 
+cd ..
+
+Return to last directory 
+cd -
+
+change the current directory to home(logged in user's) directory  
+cd ~
+
+How to check all the command used from the prompt (Command History)  
+history
+
+In which file the history of commands are stored in? 
+~/.bash_history
+
+How many lines of history does the system keep and from where you can change it?
+maximum: 1000 , most are set upto 100,500 or 1000 when it reaches limit commands will be over-written. 
+$ echo $HISTFILE
+/home/myuser/.bash_history
+$ echo $HISTSIZE
+500
+
+How can you modify bash's history behaviour
+export HISTTIMEFORMAT='%F, %T ' will add date and time
+echo $HISTSIZE increase history size
+
+Display all the commands entered so far, now, try to run a particular command from the history list without typing that command. history
+fc -s commandnumber
+
+NOTE:- TAB key is your friend when it comes to command completion and having long file and directory names autocompleted at the bash prompt for you. JUST BE LAZY AND USE TAB KEY FOR AUTO COMPLETION ;-)
+
+What are the different types of shell and where are they used and how do we use them?
+
+What is the difference between login shell and non-login shell? If you open a shell or terminal (or switch to one), and it asks you to log in (Username? Password?) before it gives you a prompt, it's a login shell.
+If it doesn't (like gnome-terminal), and lets you use it straight away, it's a non-login shell.
+
+How do we start login shell and non-login shell?
+
+What happens when you start a login shell (which files are read and used and Why)?
+
+What happens when you start a non-login shell (Which files are read and used and Why)?
+
+What are Shell Configuration Files, why do we need it?
+
+Explain the Order of file usage from the system/user's home directory when user logs in to the System.
+
+What are Shell Variables, list major shell variables and what do they represent?
+
+How we see all our env variables?
+
+How we see all env variables in alphabical order?
+
+What Format does the env var and its values are stored?
+
+How do you create your own varible?
+export NAME=VALUE
+
+How do you start a new bash shell?
+bash command
+
+Difference between Local/Shell variables to Global Variable
+
+Making a variable accessible from other the shell in the system.
+
+Show the real life use case of exporting a variable
+
+Convert the above script file into a command, The file should run with "myappp" instead of "myapp.sh"
+
+What is Globbing? Explain in depth with examples? ls filename*
+ls filename?
+ls filename[2]
+ls filename[a-z]
+
+List all entries with extension ".sh"
+ls *.sh
+
+List all entries with numbers in it.
+ls *[0-9]*
+
+List all entries that starts with a character and ends with a number
+
+List all entries that name length more than 5 characters
+
+What is Quoting? and Why do we need it?
+
+Write few(minimum 3) unique examples that shows, how a particular problem is solved using Quoting.
+
+How do you find a particular files/directories based on a particular search criteria?
+HINT:- look for commands -> locate, find and whereis
+
+Write major difference between locate, find and whereis?
+
+How Globbing is different from locate, find and whereis?
+
+Explain the Linux File System.
+
+Explain absolute and Relative Paths
+
+What are the different ways of creating a File in linux System? Write an example of each and the difference between them. 
+
+In how many ways we can delete the files from linux system? write an example of each and teh difference between them. 
+
+Archiving files using linux command, write a command to archive set of files from linux commands. tar -cvf filename.tar location
+																								  tar -cvzf filename.tar.gz location		
+																								  tar -cvfj filename.tar.bz2 location
+
+Extract the archived files from the above step.    tar -xvf filename.tar
+													tar -xvf filename.tar.gz
+													tar -xvf filename.tar.bz2
