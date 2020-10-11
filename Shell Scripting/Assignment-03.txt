@@ -1,0 +1,10 @@
+Develop a script that creates, sets and displays two variables to the terminal when run. Within this script, add comments to explain what the script is doing, what each variable is and, using inline comments, what each command is doing.
+
+
+#!/bin/bash
+# This line says that this is bash script file
+
+MYNAME="vishnu" # This command sets the value of name to MYNAME variable
+MYCITY="SAHARANPUR" # This command sets the value of city to MYCITY variable
+
+echo "Name is $MYNAME. City is $MYCITY" # echo command displays string onto the console.
