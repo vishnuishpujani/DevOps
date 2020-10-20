@@ -1,9 +1,13 @@
 Your company is ready to move forward with using Docker to run their applications. However, they have some complex container apps that can take advantage of the cluster management and orchestration features of Docker swarm. You have been asked to stand up a simple Docker swarm cluster to be used for some initial testing. A set of servers has already been provisioned for this purpose. The swarm cluster should meet the following criteria:
 
 One Swarm manager.
+docker swarm init
 Two worker nodes.
+docker swarm join --token SWMTKN-1-5u2qt1s29tir9qkq4tj981o7xp5qsnhrgz89pbiyim25h92d57-12kgwkyuo0a1215p6a93fbwax 172.31.38.181:2377
 All nodes should use Docker CE version 5:18.09.5~3-0~ubuntu-bionic.
 Both worker nodes should be joined to the cluster.
+docker node ls
+
 Any non-root user should be able to run docker commands on all three servers.
 
 [NOTE: Write the series of commands to achieve above in this file below the question scenario with documentation]
