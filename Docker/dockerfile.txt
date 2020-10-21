@@ -1,0 +1,13 @@
+# base image - nginx with tag "1.15.8"
+FROM nginx:1.15.8
+
+# Adding custom fruit.json hosted on Github 
+ADD https://github.com/satyensingh/full-docker-training-16-Z-Assignment1/blob/master/static/fruit.json /usr/share/nginx/html/fruit.json
+
+# Adding custom nginx.conf hosted on Github 
+ADD https://github.com/satyensingh/full-docker-training-16-Z-Assignment1 /etc/nginx/nginx.conf
+
+EXPOSE 80/tcp
+
+# 'nginx -g daemon off" will run as default command when any container is run that uses the image that was built using this Dockerfile"
+CMD ["nginx", "-g", "daemon off;"]

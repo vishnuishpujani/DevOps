@@ -4,6 +4,10 @@ Docker CE is installed and running on the server.
 yum install docker(latest version)
 Use Docker CE version 5:18.09.5~3-0~ubuntu-bionic.
 Any non-root user has permission to run docker commands.
+groupadd docker
+usermod -aG docker ec2-user
+docker images
+
 The default logging driver is set to syslog.
 
 

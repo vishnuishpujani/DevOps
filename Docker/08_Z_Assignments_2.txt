@@ -9,6 +9,7 @@ Both worker nodes should be joined to the cluster.
 docker node ls
 
 Any non-root user should be able to run docker commands on all three servers.
+done.
 
 [NOTE: Write the series of commands to achieve above in this file below the question scenario with documentation]
 

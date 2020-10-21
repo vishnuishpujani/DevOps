@@ -22,6 +22,11 @@ curl localhost:8080
 
 
 [NOTE: Write the series of commands to achieve above in this file below the question scenario with documentation]
-
+ 
+ Till step 4 added everything in docker file.
+ 
+ docker build - < Dockerfile --tag fruit-list:1.0.0
+ 
+ docker run --name fruit-list -d -p 8080:80 fruit-list:1.0.0
 
 Good luck!

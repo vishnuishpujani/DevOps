@@ -12,3 +12,13 @@ You can test the products-fruit service from any swarm node (including the manag
 Once products-vegetables is running, you should be able to test it from any swarm node (including the manager) with curl localhost:8081.
 
 Good luck!
+
+docker service create product-service
+docker service ls
+docker service scale crazy_rhodes=5
+docker service ps crazy_rhodes
+docker service create --name products-vegetables linuxacademycontent/vegetable-service:1.0.0
+docker service update --publish-add 8081 products-vegetables
+docker service scale products-vegetables=3
+
+while running getting connection refused.
