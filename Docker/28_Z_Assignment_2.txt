@@ -13,3 +13,17 @@ Configure the swarm so that it meets the following criteria:
 
 
 Good luck!
+
+docker plugin install vieux/sshfs
+mkdir -p /etc/docker/shared
+chown ec2-user:ec2-user /etc/docker/shared
+
+cp /home/ec2-user/nginx.conf /etc/docker/shared/nginx.conf
+
+docker service create -d \
+  --replicas=3 \
+  --name nginx-web \
+  -p 8080:9773 \
+  --mount volume-driver=vieux/sshfs,source=nginx-config-vol,target=/etc/docker/shared,volume-opt=sshcmd=ec2-user@13.59.186.24:/etc/docker/shared nginx:latest
+  
+  getting connection refused at 8080

@@ -14,3 +14,14 @@ curl localhost:8080.
 
 
 Good luck!
+
+docker network creacte -d overlay price-overlay-net
+
+docker create service -- name base-price \
+--prices-overlay-net \
+--replicas 3 \
+linuxacademycontent/prices-base-price:1
+
+docker service create --name base-price --network price-overlay-net --replicas 3 linuxacademycontent/prices-base-price:1
+docker service create --name sales --network price-overlay-net --replicas 3 linuxacademycontent/prices-sales:1
+docker service create --name total-price --network price-overlay-net --replicas 2  -d 80:8080 linuxacademycontent/prices-total-price:1

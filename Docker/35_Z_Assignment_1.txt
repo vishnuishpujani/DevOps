@@ -12,3 +12,16 @@ Configure these application components on the Docker server so that the followin
 If everything is set up correctly, you should be able to access the total prices list with curl localhost:8080.
 
 Good luck!
+
+docker network create prices-net
+docker network connect prices-net base-price
+docker network connect prices-net sales
+docker network connect prices-net total-price
+
+docker run --name base-price -d linuxacademycontent/prices-base-price:1 172.17.0.4
+docker run --name sales -d linuxacademycontent/prices-sales:1 172.17.0.3
+docker run --name total-price -d -p 80:8080 linuxacademycontent/prices-total-price:1 172.17.0.2  172.19.0.2
+
+docker exec -it base-price /bin/bash
+ping sales
+ping total price
