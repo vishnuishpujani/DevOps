@@ -18,10 +18,9 @@ docker network connect prices-net base-price
 docker network connect prices-net sales
 docker network connect prices-net total-price
 
-docker run --name base-price -d linuxacademycontent/prices-base-price:1 172.17.0.4
-docker run --name sales -d linuxacademycontent/prices-sales:1 172.17.0.3
-docker run --name total-price -d -p 80:8080 linuxacademycontent/prices-total-price:1 172.17.0.2  172.19.0.2
+docker run --name base-price -d linuxacademycontent/prices-base-price:1 
+docker run --name sales -d linuxacademycontent/prices-sales:1 
+docker run --name total-price -d -p 8080:80 linuxacademycontent/prices-total-price:1 
 
-docker exec -it base-price /bin/bash
-ping sales
-ping total price
+curl http://localhost:8080
+#Getting items and prices list
