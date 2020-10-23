@@ -39,3 +39,8 @@ Once you have deployed the stack and verified that it is working, modify the sta
 
 
 Good luck!
+
+docker service create --name fruit --network price-overlay-net --replicas 2 -p 80:8080 linuxacademycontent/prices-total-price:1
+docker service create --name fruit -p 8080:80 linuxacademycontent/fruit-service:1.0.1
+docker service create --name vegetables -p 8292:80 linuxacademycontent/vegetable-service:1.0.1
+docker service create --name all-products -p 8293:80 linuxacademycontent/all-products:1.0.0
