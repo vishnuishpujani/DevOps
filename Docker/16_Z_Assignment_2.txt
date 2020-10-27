@@ -26,7 +26,9 @@ docker run -d -p 5000:5000 --restart=always --name registry registry:2
 mkdir ~/registry
 cd ~/registry
 mkdir auth
-docker run --entrypoint htpasswd registry:2 -Bbn docker password > d0ck3rrU73z
+docker run --entrypoint htpasswd registry:2 -Bbn docker d0ck3rrU73z > auth/htpasswd
+docker container stop registry
+
 mkdir certs
 openssl req \
   -newkey rsa:4096 -nodes -sha256 -keyout certs/domain.key \
