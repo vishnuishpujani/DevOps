@@ -40,7 +40,27 @@ Once you have deployed the stack and verified that it is working, modify the sta
 
 Good luck!
 
-docker service create --name fruit --network price-overlay-net --replicas 2 -p 80:8080 linuxacademycontent/prices-total-price:1
-docker service create --name fruit -p 8080:80 linuxacademycontent/fruit-service:1.0.1
-docker service create --name vegetables -p 8292:80 linuxacademycontent/vegetable-service:1.0.1
-docker service create --name all-products -p 8293:80 linuxacademycontent/all-products:1.0.0
+version: "3.8"
+services:
+
+  fruit:
+    image: linuxacademycontent/fruit-service:1.0.1
+    ports:
+      - "8081:80"
+
+  vegetables:
+    image: linuxacademycontent/vegetable-service:1.0.0
+    ports:
+      - "8082:80"
+
+  allproducts:
+    image: linuxacademycontent/all-products:1.0.0
+    ports:
+      - "8080:80"
+    environment:
+      FRUIT_HOST: "localhost"
+      FRUIT_PORT: "8081"
+      VEGETABLE_HOST: "localhost"
+      VEGETABLE_PORT: "8082"
+
+docker stack deploy -c docker-stack.yml produce
