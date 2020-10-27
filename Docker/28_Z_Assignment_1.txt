@@ -13,3 +13,14 @@ For the counter container, use the busybox image with the following command: sh 
 
 
 Good luck!
+
+docker volume create test-data
+docker run -d --name counter \
+  --mount source=test-data,target=/var/log/test \
+  busybox sh -c 'i=0; while true; do echo "$i: $(date)" >> /var/log/test/1.log; i=$((i+1)); sleep 1; done'
+docker run -d --name fluentd \
+  -e "FLUENTD_ARGS=-c /fluentd/etc/fluent.conf" \
+  --mount source=test-data,target=/var/log/input \
+  --mount type=bind,source=/etc/fluentd/fluent.conf,target=/fluentd/etc/fluent.conf \
+  --mount type=bind,source=/etc/fluentd/output,target=/var/log/output \
+  k8s.gcr.io/fluentd-gcp:1.30
