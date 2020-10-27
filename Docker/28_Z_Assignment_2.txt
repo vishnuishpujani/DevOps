@@ -25,5 +25,3 @@ docker service create -d \
   --name nginx-web \
   -p 8080:9773 \
   --mount volume-driver=vieux/sshfs,source=nginx-config-vol,target=/etc/docker/shared,volume-opt=sshcmd=ec2-user@13.59.186.24:/etc/docker/shared nginx:latest
-  
-  getting connection refused at 8080
