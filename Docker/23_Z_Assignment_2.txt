@@ -64,3 +64,6 @@ services:
       VEGETABLE_PORT: "8082"
 
 docker stack deploy -c docker-stack.yml produce
+curl localhost:8080
+docker service scale fruit=5
+docker service scale vegetable=5
