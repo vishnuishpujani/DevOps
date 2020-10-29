@@ -13,3 +13,13 @@ Here is some important information to keep in mind as you work through this lab:
 Once you have pushed the signed image, you should be able to run it with the line shown here: docker run -d -p 8080:80 ip-10-0-1-102:443/content-dca-tea:1. Once the image is running, you can test it with curl localhost:8080. You should see a JSON list generated for the various kinds of tea.
 
 Good luck!
+
+docker pull linuxacademycontent/content-dca-tea:1
+docker tag linuxacademycontent/content-dca-tea:1 localhost:443/content-dca-tea:1
+docker trust key generate newkey
+docker trust signer add --key newkey.pub vishnu localhost:443/content-dca-tea
+docker trust sign localhost:443/content-dca-tea:1
+export DOCKER_CONTENT_TRUST=1
+docker push localhost:443/content-dca-tea:1
+docker run -d -p 8080:80 localhost:443/content-dca-tea:1
+curl localhost:8080
