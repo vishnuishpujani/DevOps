@@ -87,3 +87,34 @@ The service listens on port 8080 and its targetPort matches the port exposed by 
 The service type is ClusterIP.
 
 Note: All work should be done in the default namespace.
+
+
+kubectl apply -f auth-deployment.yaml --record=true
+kubectl apply -f data-deployment.yaml --record=true
+auth-svc.yaml
+apiVersion: v1
+kind: Service
+metadata:
+  name: auth-svc
+spec:
+  selector:
+    app: auth-deployment
+  ports:
+    - protocol: TCP
+      port: 8080
+      targetPort: 80
+kubectl apply -f auth-svc.yaml
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: data-svc
+spec:
+  selector:
+    app: data-deployment
+  ports:
+    - protocol: TCP
+      port: 8080
+      targetPort: 80
+
+kubectl apply -f data-svc.yaml
