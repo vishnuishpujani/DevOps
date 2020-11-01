@@ -16,3 +16,54 @@ We have been asked to create a deployment that meets the app's specifications. T
 10. The service should be named pizza-service.
 11. The service should forward traffic to port 80 on the pods.
 12. The service should be exposed externally by listening on port 30080 on each node.
+
+Pizza-deployemnt.yaml
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: pizza-deployment
+spec:
+  replicas: 3
+    spec:
+      containers:
+      - name: vishnu-pizza
+        image: linuxacademycontent/pizza-service:1.14.6
+        ports:
+        - containerPort: 80
+      - name: nginx-pizza
+        image: nginx:latest
+        ports:
+      - containerPort: 80
+      - name: liveness
+        image: k8s.gcr.io/liveness
+        args:
+        - /server
+        livenessProbe:
+        httpGet:
+        path: /healthz
+        port: 8081
+        httpHeaders:
+        - name: Custom-Header
+          value: Awesome
+            initialDelaySeconds: 3
+            periodSeconds: 3 
+			
+kubectl apply -f pizza-deployemnt.yaml
+
+
+pizza-service.yaml
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: pizza-service
+spec:
+  selector:
+    app: pizza-deployment
+  ports:
+    - protocol: TCP
+      port: 30080
+      targetPort: 80
+	  
+kubectl apply -f pizza-service.yaml
