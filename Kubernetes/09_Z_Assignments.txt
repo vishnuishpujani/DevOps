@@ -59,3 +59,63 @@ kubectl apply -f fruit-service-ambassador-config.yaml
 kubectl apply -f haproxy.yaml
 kubectl get pods 
 
+fruit-service.yaml
+
+apiVersion: v1
+kind: Pod
+metadata:
+  name: fruit-service
+spec:
+  containers:
+  - name: fruit-service
+    image: linuxacademycontent/legacy-fruit-service:1
+    ports:
+    - containerPort: 80
+
+fruit-service-ambassador-config.yaml
+
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: haproxy
+data:
+  haproxy.cfg: |
+       daemon
+    maxconn 256
+
+defaults
+    mode http
+    timeout connect 5000ms
+    timeout client 50000ms
+    timeout server 50000ms
+
+listen http-in
+    bind *:80
+    server server1 127.0.0.1:8775 maxconn 32
+	
+	
+haproxy.yaml
+
+apiVersion: v1
+kind: Pod
+metadata:
+  name: ambassador-pattern
+spec:
+  containers:
+  - name: fruit-service
+    image: haproxy:1.7
+    ports:
+        - containerPort: 80
+     volumeMounts:
+            - name: haproxy
+              mountPath: /usr/local/etc/haproxy/haproxy.cfg
+    securityContext:
+      privileged: true
+    volumes:
+        - name: haproxy
+          configMap:
+            name: haproxy
+			
+
+
+
