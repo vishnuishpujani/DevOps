@@ -27,8 +27,8 @@ inventory.yml on control
 
 add this 
 
-node1 host  ansible_user= ansible SHA256:Mmqmq58w+20G7BoWvFsBEb2ULVrKm5fuNu9db3qdTg8
-node2 host  ansible_user= ansible SHA256:Mmqmq58w+20G7BoWvFsBEb2ULVrKm5fuNu9db3qdTg8
+node1 host  ansible_user= ansible 
+node2 host  ansible_user= ansible
 -----------------------------
 
 ansible node-1 -m ping
